@@ -18,7 +18,7 @@ public class Coupons {
     @Id
     @Getter
     @Setter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "cost_reduction")
@@ -40,5 +40,9 @@ public class Coupons {
     @Setter
     @Column(name = "automatic")
     private Boolean automatic;
+
+    @Getter
+    @Setter
+    private Date used;
 
 }

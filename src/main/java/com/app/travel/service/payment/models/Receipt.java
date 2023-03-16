@@ -18,14 +18,18 @@ public class Receipt {
     @Id
     @Getter
     @Setter
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.UUID)
     private UUID id;
 
     @Getter
     @Setter
-    @OneToOne(optional = false)
-    @JoinColumn(name = "coupon_id")
-    private UUID couponId;
+    private String bookingRef;
+
+    @Getter
+    @Setter
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(columnDefinition = "uuid", name = "coupon_id")
+    private Coupons couponRef;
 
     @Getter
     @Setter
