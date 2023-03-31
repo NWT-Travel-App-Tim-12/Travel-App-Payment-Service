@@ -1,10 +1,10 @@
-package com.app.travel.service.payment.models;
+package com.app.travel.service.payment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -13,32 +13,31 @@ import java.util.UUID;
 @Table(name = "coupons")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Coupons {
 
     @Id
-    @Getter
-    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Integer id;
 
     @Column(name = "cost_reduction")
-    @Getter
-    @Setter
+    @Min(value = 0, message = "Cost reduction value can't be negative.")
     private Integer costReduction;
 
-    @Getter
-    @Setter
     @Column(name = "created_at")
+    @JsonIgnore
     private Date createdAt;
 
-    @Getter
-    @Setter
     @Column(name = "valid_until")
+    @JsonIgnore
     private Date validUntil;
 
-    @Getter
-    @Setter
     @Column(name = "automatic")
+    @NotNull(message = "Automatic value has to be sent.")
     private Boolean automatic;
+
+    @OneToOne(mappedBy = "coupon")
+    private Receipt receipt;
+
 
 }
