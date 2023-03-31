@@ -24,13 +24,13 @@ public class PaymentController {
     private ReceiptService receiptService;
 
 
-    @PostMapping(path = "")
+    @PostMapping(path = "/coupon")
     public @ResponseBody ResponseEntity<Coupons> addCoupon(@RequestBody @Valid Coupons coupons) {
         return new ResponseEntity<>(couponsService.addCoupon(coupons), HttpStatus.OK);
     }
 
 
-    @PostMapping(path = "")
+    @PostMapping(path = "/receipt")
     public @ResponseBody ResponseEntity<Receipt> addReceipt(@RequestBody @Valid Receipt receipt) {
         return new ResponseEntity<>(receiptService.addReceipt(receipt), HttpStatus.OK);
     }
