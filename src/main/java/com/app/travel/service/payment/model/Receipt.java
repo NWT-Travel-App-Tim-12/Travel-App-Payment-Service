@@ -40,4 +40,8 @@ public class Receipt {
     private Date createdAt;
 
 
+    @Column(name = "booking")
+    private Integer bookingRef;
+
+
 }

@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path = "/payment")
@@ -33,6 +30,11 @@ public class PaymentController {
     @PostMapping(path = "/receipt")
     public @ResponseBody ResponseEntity<Receipt> addReceipt(@RequestBody @Valid Receipt receipt) {
         return new ResponseEntity<>(receiptService.addReceipt(receipt), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/receipt")
+    public @ResponseBody ResponseEntity<Receipt> getReceipt(){
+        return new ResponseEntity<>(receiptService.getReceipt(), HttpStatus.OK);
     }
 
 
