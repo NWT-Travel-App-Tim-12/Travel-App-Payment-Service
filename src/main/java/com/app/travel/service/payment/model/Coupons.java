@@ -37,6 +37,7 @@ public class Coupons {
     private Boolean automatic;
 
     @OneToOne(mappedBy = "coupon")
+    @JsonIgnore
     private Receipt receipt;
 
 

@@ -20,8 +20,8 @@ public class Receipt {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "coupon_id")
+    @OneToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "coupon_id", insertable = false, updatable = false)
     @NotNull(message = "You have to provide coupon information!")
     private Coupons coupon;
 
