@@ -8,7 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Table(name = "receipt")
@@ -22,7 +21,6 @@ public class Receipt {
 
     @OneToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "coupon_id", insertable = false, updatable = false)
-    @NotNull(message = "You have to provide coupon information!")
     private Coupons coupon;
 
     @Column
@@ -40,8 +38,10 @@ public class Receipt {
     private Date createdAt;
 
 
-    @Column(name = "booking")
-    private Integer bookingRef;
+    @Column(name = "booking_id")
+    private Integer bookingId;
+
+    private Integer userId;
 
 
 }
